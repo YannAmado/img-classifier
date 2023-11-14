@@ -64,20 +64,16 @@ def make_and_store_images(df, augdir, n,  img_size,  gen, color_mode='rgb', save
         classdir=os.path.join(augdir, label)
         group=groups.get_group(label)  # a dataframe holding only rows with the specified label
         sample_count=len(group)   # determine how many samples there are in this class
-        if sample_count< n: # if the class has less than target number of images
-            aug_img_count=0
-            delta=n - sample_count  # number of augmented images to create
-            msg='{0:40s} for class {1:^30s} creating {2:^5s} augmented images'.format(' ', label, str(delta))
-            print(msg, '\r', end='') # prints over on the same line
-            aug_gen=gen.flow_from_dataframe( group,  x_col='filepaths', y_col=None, target_size=img_size,
-                                            class_mode=None, batch_size=1, shuffle=False,
-                                            save_to_dir=classdir, save_prefix=save_prefix, color_mode=color_mode,
-                                            save_format=save_format)
+        aug_img_count=0
+        aug_gen=gen.flow_from_dataframe( group,  x_col='filepaths', y_col=None, target_size=img_size,
+                                        class_mode=None, batch_size=1, shuffle=False,
+                                        save_to_dir=classdir, save_prefix=save_prefix, color_mode=color_mode,
+                                        save_format=save_format)
 
-            while aug_img_count<delta:
-                images=next(aug_gen)
-                aug_img_count += len(images)
-            total +=aug_img_count
+        while aug_img_count<n:
+            images=next(aug_gen)
+            aug_img_count += len(images)
+        total +=aug_img_count
     print('Total Augmented images created= ', total)
 
 sdir=r'./dataset/train'
@@ -86,7 +82,7 @@ print (df.head())
 print ('length of dataframe is ',len(df))
 
 augdir=r'./dataset/train_augmented' # directory to store the images if it does not exist it will be created
-n=150 # if the class had N image samples in the sdir, if N<n than in augdir n-N augmented images will be created
+n=500 # How many images to create
 img_size=(32,32) # image size (height,width) of augmented images
 
 # train_data_gen = ImageDataGenerator(
