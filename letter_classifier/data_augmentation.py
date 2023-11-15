@@ -59,7 +59,7 @@ def make_and_store_images(df, augdir, n,  img_size,  gen, color_mode='rgb', save
             images=next(aug_gen)
             aug_img_count += len(images)
         total +=aug_img_count
-    print('Total Augmented images created= ', total)
+    print('Total Augmented images created =', total)
 
 # sdir=r'../dataset/train'
 # df=make_dataframe(sdir)
