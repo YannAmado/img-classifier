@@ -4,7 +4,7 @@ import shutil
 from tqdm import tqdm
 from keras.preprocessing.image import ImageDataGenerator
 
-IMG_SIZE = (32,32)
+from .config import IMG_SIZE
 
 def make_dataframe(sdir):
     # sdir is the directory when the class subdirectories are stored
@@ -26,7 +26,7 @@ def make_dataframe(sdir):
     # return a dataframe with columns filepaths, labels
     return df
 
-def make_and_store_images(df, augdir, n,  img_size,  gen, color_mode='rgb', save_prefix='aug-',save_format='jpg'):
+def make_and_store_images(df, augdir, n,  gen, color_mode='rgb', save_prefix='aug-',save_format='jpg'):
     #augdir is the full path where augmented images will be stored
     #n is the number of augmented images that will be created for each class that has less than n image samples
     # img_size  is a tupple(height,width) that specifies the size of the augmented images
@@ -50,7 +50,7 @@ def make_and_store_images(df, augdir, n,  img_size,  gen, color_mode='rgb', save
         group=groups.get_group(label)  # a dataframe holding only rows with the specified label
         sample_count=len(group)   # determine how many samples there are in this class
         aug_img_count=0
-        aug_gen=gen.flow_from_dataframe( group,  x_col='filepaths', y_col=None, target_size=img_size,
+        aug_gen=gen.flow_from_dataframe( group,  x_col='filepaths', y_col=None, target_size=IMG_SIZE,
                                         class_mode=None, batch_size=1, shuffle=False,
                                         save_to_dir=classdir, save_prefix=save_prefix, color_mode=color_mode,
                                         save_format=save_format)

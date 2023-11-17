@@ -1,25 +1,18 @@
 from keras.preprocessing.image import ImageDataGenerator
 from letter_classifier.create_model import Model
 from letter_classifier.pipeline import Pipeline
+from letter_classifier.config import *
 
-IMG_SIZE = (128,128)
-model_initializer = Model(img_size=IMG_SIZE)
+model_initializer = Model()
 # models = [model_initializer.mobile_net(),
 #           model_initializer.deep_neural_network(),
 #           model_initializer.double_convolutional()]
 models=[model_initializer.mobile_net()]
-pipeline = Pipeline(img_size=IMG_SIZE, models=models)
-pipeline.split_dataset(dataset_dir='./dataset/full_dataset', train_ratio=0.8)
+pipeline = Pipeline(models=models)
+pipeline.split_dataset(dataset_dir=ORIGINAL_DATASET_DIR, train_ratio=TRAIN_TEST_RATION)
 
-img_generator=ImageDataGenerator(
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        shear_range=10,
-        zoom_range=0.2,
-        horizontal_flip=True,
-)
-pipeline.augment_dataset(subset='train', img_generator=img_generator, n_images_to_create=512)
+pipeline.augment_dataset(subset='train', img_generator=IMG_GENERATOR, n_images_to_create=N_IMGS_TO_GENERATE_PER_CLASS)
 img_generator=ImageDataGenerator()
-pipeline.augment_dataset(subset='test', img_generator=img_generator, n_images_to_create=512)
+pipeline.augment_dataset(subset='test', img_generator=img_generator, n_images_to_create=N_IMGS_TO_GENERATE_PER_CLASS)
 
-pipeline.train_models(batch_size=64, epochs=5, k_folds=3)
+pipeline.train_models(batch_size=BATCH_SIZE, epochs=EPOCHS, k_folds=K_FOLDS, loss=LOSS, optimizer=OPTIMIZER, metrics=METRIC)

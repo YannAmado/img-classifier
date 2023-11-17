@@ -4,13 +4,12 @@ import numpy as np
 
 from sklearn.model_selection import KFold
 from keras import metrics
+from .config import IMG_SIZE
 
 
 
 class ModelTraining:
-    def __init__(self, num_classes, img_size, batch_size, epochs, seed=42):
-        self.num_classes = num_classes
-        self.img_size = img_size
+    def __init__(self, batch_size, epochs, seed=42):
         self.batch_size = batch_size
         self.epochs = epochs
         self.seed = seed
@@ -20,15 +19,13 @@ class ModelTraining:
             train_dir,
             label_mode='categorical',
             seed=self.seed,
-            image_size=(self.img_size[0], self.img_size[1]),
+            image_size=(IMG_SIZE[0], IMG_SIZE[1]),
             batch_size=self.batch_size)
 
         self.train_X = np.concatenate(list(train_ds.map(lambda x, y: x)))
         self.train_y = np.concatenate(list(train_ds.map(lambda x, y: y)))
 
-    def cross_validate(self, model, k_folds, loss='categorical_crossentropy',
-                 optimizer='adam',
-                 metrics=metrics.CategoricalAccuracy()):
+    def cross_validate(self, model, k_folds, loss, optimizer, metrics):
         kfold = KFold(n_splits=k_folds, shuffle=True)
         for i, (train, test) in enumerate(kfold.split(self.train_X, self.train_y)):
             print(f'FOLD {i+1}:')
@@ -46,7 +43,7 @@ class ModelTraining:
         test_ds = keras.utils.image_dataset_from_directory(
             test_dir,
             seed=self.seed,
-            image_size=(self.img_size[0], self.img_size[1]),
+            image_size=(IMG_SIZE[0], IMG_SIZE[1]),
             batch_size=self.batch_size)
 
         predictions = model.predict(test_ds)
