@@ -77,7 +77,7 @@ Some of the things you always need to do is:
 * Compare the models trained
 
 Everything is simple enough if you have ever used TensorFlow or Keras before, but tracking all of the possible configurations and repeating everything was often a pain to me.
-That's why I decided to make this pipeline to make everything easier!
+That's why I decided to make this pipeline to make everything extremely easy!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
