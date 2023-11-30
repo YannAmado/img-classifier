@@ -58,9 +58,6 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -69,7 +66,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#how-to-use">How to Use</a></li>
+    <li><a href="#demos">Usage Demos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -95,41 +93,10 @@ That's why I decided to make this pipeline to make everything easier!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### If youre are in a hurry
-
-The only actual part you need to change is the config.py, set the necessary parameters and you are good to go!
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
-
 
 1. Clone the repo
    ```sh
@@ -148,13 +115,32 @@ This is an example of how to list things you need to use the software and how to
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- HOW TO USE -->
+## How to use
 
-<!-- USAGE EXAMPLES -->
-## Usage
+### Setting config.py
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+config.py is where the code takes all the necessary settings to do everything, change the necessary parameters as desired for your own project.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### To run
+
+Just run main.py as normal and everything will automatically be done as you setup on the previous step!
+
+### To add new models
+
+Currently, the only models supported are MobileNetV2 and a simple neural network, if you wish to add more or customize your own just define it on create_model.py and select it on main.py
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- DEMOS -->
+## Usage Demos
+
+### Stanford cars
+
+### Simpsons Characters 
+
+### CIFAR-10
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -167,11 +153,6 @@ Yann Amado - [in/yannamado](https://www.linkedin.com/in/yannamado) - yannamado.n
 Project Link: [https://github.com/YannAmado/img-classifier](https://github.com/YannAmado/img-classifier)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
