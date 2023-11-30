@@ -1,5 +1,4 @@
 import keras
-import tensorflow as tf
 import numpy as np
 
 from sklearn.model_selection import KFold
@@ -47,5 +46,10 @@ class ModelTraining:
             batch_size=self.batch_size)
 
         predictions = model.predict(test_ds)
-        score = tf.nn.softmax(predictions)
+        score = softmax(predictions)
         return score
+
+    @staticmethod
+    def _softmax(x):
+        """Compute softmax values for each sets of scores in x."""
+        return np.exp(x) / np.sum(np.exp(x), axis=0)
