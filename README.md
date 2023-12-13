@@ -55,8 +55,8 @@
       </ul>
     </li>
     <li><a href="#how-to-use">How to Use</a></li>
-    <li><a href="#demos">Usage Demos</a></li>
-    <li><a href="#tips">Final Tips</a></li>
+    <li><a href="#demos">Demos</a></li>
+    <li><a href="#tips">Tips</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -122,7 +122,7 @@ Currently, the models supported are MobileNetV2, Residual Networks (ResNet50) an
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- DEMOS -->
-## Usage Demos
+## Demos
 
 All demos were made using only 10 classes because of computational power constraints
 
